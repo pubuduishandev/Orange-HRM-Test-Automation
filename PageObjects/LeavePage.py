@@ -1,0 +1,19 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+class LeavePage:
+    def __init__(self, driver):
+        self.driver = driver
+        self.wait = WebDriverWait(self.driver, 10)
+
+        # Better XPath to accurately target the clickable 'Leave' menu
+        self.sidebar_leave = (By.XPATH, "//span[text()='Leave']/ancestor::a")
+        self.leave_page_header = (By.XPATH, "//h6[text()='Leave']")
+
+    def click_leave_menu(self):
+        self.wait.until(EC.element_to_be_clickable(self.sidebar_leave)).click()
+
+    def is_leave_page_displayed(self):
+        return self.wait.until(EC.visibility_of_element_located(self.leave_page_header)).is_displayed()
+
