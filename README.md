@@ -1,5 +1,5 @@
 **Project: OrangeHRM Test Automation** <br>
-_Automate the login , leave and log out processes for the OrangeHRM site_
+_Automate the login , leave and log out processes for the OrangeHRM site_ <br>
 Course Module: IC 4305 - Software Quality Management and Test Automation <br>
 Prepared by: W.A.P. Pubudu Ishan <br>
 Index No:- 2020t00876 <br>
