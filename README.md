@@ -10,15 +10,30 @@ Toolset: Selenium, Python, PyTest, Page Object Model (POM) <br>
 **Introduction** <br>
 This test plan outlines the strategy and scope of the automated functional testing effort for the OrangeHRM demo web application using Selenium WebDriver and Python. The goal is to validate the successful execution of login, leave application, and logout workflows using a maintainable and scalable Page Object Model (POM) based automation framework. <br>
 
-**Test Items**
-OrangeHRM Demo Web Application
-URL: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+**Test Items** <br>
+OrangeHRM Demo Web Application <br>
+URL: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login <br>
+username = "Admin" <br>
+password = "admin123" <br>
+
+**Activity** <br>
+1. Create page object Model test framework using Selenium and Python with following layers <br>
+      a. Page Objects layer            b. Test Layer <br>
+2. Write a test Method to Verify Home Page Title <br>
+      a. Verify login page invoked correctly <br>
+3. Write a test Method to Perform Login Functionality <br>
+      a. Verify Dashboard page loaded <br>
+4. Write a test Method to Perform Leave Functionality by clicking My Leave icon from quick launch <br>
+      a. Verify Leave page loaded <br>
+5. Write a test Method to Perform logout Functionality <br>
+6. Execute the tests and verify results <br>
+7. Commit the code to github repository and submit the link of the code <br>
 
 **Features to be Tested** <br>
-01. Home page title validation <br>
-02. Login functionality with valid credentials <br>
-03. Leave page navigation via "My Leave" Quick Launch icon <br>
-04. Logout functionality <br>
+  - Home page title validation <br>
+  - Login functionality with valid credentials <br>
+  - Leave page navigation via "My Leave" Quick Launch icon <br>
+  - Logout functionality <br>
 
 **Features Not to Be Tested** <br>
   - Backend/API layers <br>
