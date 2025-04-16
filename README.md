@@ -88,7 +88,7 @@ Step 1: 🔥 Delete the broken venv (From the project directory) <br>
 `rmdir /S /Q .venv` <br>
 
 Step 2: ⚙️ Recreate venv with Python (Run this from your project directory) <br>
-`"{python.exe path} -m venv .venv"`
+`"{python.exe path}" -m venv .venv`
 
 example: <br>
 `"C:\Users\pubudui\AppData\Local\Programs\Python\Python313\python.exe" -m venv .venv`
