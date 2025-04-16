@@ -7,7 +7,6 @@ from Utilities.data_loader import load_profile_menu_from_json
 # Load profile dropdown test data
 profile_items = load_profile_menu_from_json()
 
-
 @pytest.mark.order(4)
 @pytest.mark.parametrize("menu_item", profile_items)
 def test_logout_functionality(driver, menu_item):
