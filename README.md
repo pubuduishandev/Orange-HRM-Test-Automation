@@ -3,7 +3,7 @@ _Automate the login , leave and log out processes for the OrangeHRM site_ <br>
 Course Module: IC 4305 - Software Quality Management and Test Automation <br>
 Prepared by: W.A.P. Pubudu Ishan <br>
 Index No:- 2020t00876 <br>
-Email:- 2020t00876@stu.cmb.ac.lk <br>
+Email:- [2020t00876@stu.cmb.ac.lk](mailto:2020t00876@stu.cmb.ac.lk) <br>
 Assignment Submission Date : 24th April 2025 <br>
 Toolset: Selenium, Python, PyTest, Page Object Model (POM) <br>
 
@@ -16,7 +16,7 @@ This test plan outlines the strategy and scope of the automated functional testi
 
 **Test Items** <br>
 OrangeHRM Demo Web Application <br>
-URL: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login <br>
+base_url: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login <br>
 username = "Admin" <br>
 password = "admin123" <br>
 
@@ -24,7 +24,8 @@ password = "admin123" <br>
 
 **Activity** <br>
 1. Create page object Model test framework using Selenium and Python with following layers <br>
-      a. Page Objects layer            b. Test Layer <br>
+      a. Page Objects layer <br>
+      b. Test Layer <br>
 2. Write a test Method to Verify Home Page Title <br>
       a. Verify login page invoked correctly <br>
 3. Write a test Method to Perform Login Functionality <br>
@@ -67,16 +68,16 @@ A modular and layered Page Object Model (POM) architecture will be used for test
   - Operating System: Windows <br>
   - PyCharm IDE (latest) (Professional Edition) <br>
   - Browser: Google Chrome (latest) <br>
-  - Python: Version 3.13.3 <br>
+  - Python: Version (latest) <br>
   - Required Libraries: <br>
-      - selenium <br>
-      - pytest <br>
-      - webdriver-manager <br>
-      - pytest-html (optional) <br>
-      - Openpyxl <br>
-      - Allure <br>
-      - pytest-order <br>
-      - reportlab <br>
+      - `selenium` <br>
+      - `pytest` <br>
+      - `webdriver-manager` <br>
+      - `pytest-html` (optional) <br>
+      - `Openpyxl` <br>
+      - `Allure` <br>
+      - `pytest-order` <br>
+      - `reportlab` <br>
   - Internet connectivity for accessing OrangeHRM demo site <br>
 
 ---
