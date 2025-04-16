@@ -1,0 +1,14 @@
+[
+  {
+    "base_url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
+    "title": "OrangeHRM"
+  },
+  {
+    "base_url": "https://sis.cmb.ac.lk/tech/",
+    "title": "SignIn | SIS"
+  },
+  {
+    "base_url": "https://lms.tech.cmb.ac.lk/",
+    "title": "Online Learning Management System, Faculty of Technology, University of Colombo"
+  }
+]
