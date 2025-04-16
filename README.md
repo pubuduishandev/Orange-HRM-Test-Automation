@@ -72,11 +72,11 @@ A modular and layered Page Object Model (POM) architecture will be used for test
   - Required Libraries: <br>
       - `selenium` <br>
       - `pytest` <br>
-      - `webdriver-manager` <br>
-      - `pytest-html` (optional) <br>
-      - `Openpyxl` <br>
-      - `Allure` <br>
       - `pytest-order` <br>
+      - `webdriver-manager` <br>
+      - `pytest-html` <br>
+      - `openpyxl` <br>
+      - `allure-pytest` <br>
       - `reportlab` <br>
   - Internet connectivity for accessing OrangeHRM demo site <br>
 
@@ -101,6 +101,7 @@ Step 4: 📦 Install required packages <br>
 `pip install selenium` <br>
 `pip install pytest` <br>
 `pip install pytest-order` <br>
+`pip install webdriver-manager` <br>
 `pip install pytest-html` <br>
 `pip install pytest-xdist` <br>
 `pip install openpyxl` <br>
