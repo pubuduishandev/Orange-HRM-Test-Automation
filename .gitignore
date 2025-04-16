@@ -1,0 +1,29 @@
+# Ignore logs, reports, screenshots
+Logs/
+Reports/
+Screenshots/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment folders
+env/
+venv/
+ENV/
+.VENV/
+.venv/
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+*.log
+*.tmp
