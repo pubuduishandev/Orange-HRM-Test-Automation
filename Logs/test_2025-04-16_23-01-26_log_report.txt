@@ -1,5 +1,0 @@
-Test Case ID   Description                   Started                  End                      Duration
-TC01           Show Home Page Title          2025-04-16 23:01:26      2025-04-16 23:01:37      10.35s
-TC02           Login Functionality           2025-04-16 23:01:39      2025-04-16 23:02:52      72.72s
-TC03           Leave Functionality           2025-04-16 23:02:54      2025-04-16 23:03:19      25.12s
-TC04           Logout Functionality          2025-04-16 23:03:21      2025-04-16 23:03:57      36.40s
