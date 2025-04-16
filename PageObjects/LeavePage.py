@@ -5,15 +5,12 @@ from selenium.webdriver.support import expected_conditions as EC
 class LeavePage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(self.driver, 10)
+        self.wait = WebDriverWait(driver, 10)
 
-        # Better XPath to accurately target the clickable 'Leave' menu
-        self.sidebar_leave = (By.XPATH, "//span[text()='Leave']/ancestor::a")
-        self.leave_page_header = (By.XPATH, "//h6[text()='Leave']")
+    def click_nav_item(self, nav_name):
+        nav_xpath = f"//span[text()='{nav_name}']/ancestor::a"
+        self.wait.until(EC.element_to_be_clickable((By.XPATH, nav_xpath))).click()
 
-    def click_leave_menu(self):
-        self.wait.until(EC.element_to_be_clickable(self.sidebar_leave)).click()
-
-    def is_leave_page_displayed(self):
-        return self.wait.until(EC.visibility_of_element_located(self.leave_page_header)).is_displayed()
-
+    def get_page_header_text(self):
+        header_xpath = "//h6"
+        return self.wait.until(EC.visibility_of_element_located((By.XPATH, header_xpath))).text
