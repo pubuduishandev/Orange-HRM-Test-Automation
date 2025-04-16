@@ -1,5 +1,14 @@
 [
-    {"username": "Admin", "password": "admin123"},
-    {"username": "administrator", "password": "administrator123"},
-    {"username": "SysAdmin", "password": "SysAdmin123"}
+    {
+        "username": "Admin",
+        "password": "admin123"
+    },
+    {
+        "username": "administrator",
+        "password": "administrator123"
+    },
+    {
+        "username": "SysAdmin",
+        "password": "SysAdmin123"
+    }
 ]
