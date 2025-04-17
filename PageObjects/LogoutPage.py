@@ -31,7 +31,7 @@ class LogoutPage:
 
     def is_logged_out(self):
         """
-        Verifies if the user is successfully logged out by checking visibility of login input field.
+        Verifies if the user is successfully logged out by checking the page title.
         """
-        login_input = (By.NAME, "username")
-        return self.wait.until(EC.visibility_of_element_located(login_input)).is_displayed()
+        self.wait.until(lambda driver: driver.title == "OrangeHRM")
+        return self.driver.title == "OrangeHRM"
