@@ -31,6 +31,6 @@ def test_navigate_to_leave(driver, nav_item):
     expected_header = "Leave"
 
     # Step 6: Assert actual vs expected navigate to the leave result
-    assert nav_item["nav_bar"] == expected_nav, f"Expected nav_bar='{expected_nav}', got '{nav_item['nav_bar']}'"
-    assert nav_item["page_header"] == expected_header, f"Expected page_header='{expected_header}', got '{nav_item['page_header']}'"
+    assert nav_item["nav_bar"] == expected_nav, f"Expected click on quick launch ='{expected_nav}', but clicked on '{nav_item['nav_bar']}'"
+    assert nav_item["page_header"] == expected_header, f"Expected ='{expected_header}', got '{nav_item['page_header']}'"
     assert actual_header == expected_header, f"Expected header '{expected_header}', got '{actual_header}' after clicking '{nav_item['nav_bar']}'"
