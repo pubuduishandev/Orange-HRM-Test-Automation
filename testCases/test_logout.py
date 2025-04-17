@@ -18,16 +18,19 @@ def test_logout_functionality(driver, menu_item):
     login_page.login("Admin", "admin123")
     assert login_page.is_dashboard_displayed(), "Login failed — dashboard not visible"
 
-    # Step 2: Attempt logout ONLY if the dropdown item is "Logout"
-    logout_page = LogoutPage(driver)
-
+    # Step 2: Check if the current test menu item is 'Logout'
     expected_dropdown_item = "Logout"
+    actual_item = menu_item["drop_down"]
 
-    # Step 3: Strictly validate dropdown label before attempting
-    assert menu_item["drop_down"] == expected_dropdown_item, (
-        f"Test failed — Expected dropdown item 'Logout' but got '{menu_item['drop_down']}'"
-    )
+    if actual_item != expected_dropdown_item:
+        pytest.fail(f"Test failed — Expected dropdown item 'Logout' but got '{actual_item}'")
+    else:
+        # Step 3: Attempt logout
+        logout_page = LogoutPage(driver)
+        logout_page.logout()
 
-    # Step 4: Proceed to logout (click and verify logout works)
-    logout_page.logout()
-    assert logout_page.is_logged_out(), "Logout failed — login page not visible after logout"
+        # Step 4: Verify logout was successful
+        if logout_page.is_logged_out():
+            print("Logout test case pass")
+        else:
+            pytest.fail("Logout failed — login page not visible after logout")

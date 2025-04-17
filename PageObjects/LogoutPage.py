@@ -31,7 +31,12 @@ class LogoutPage:
 
     def is_logged_out(self):
         """
-        Verifies if the user is successfully logged out by checking the page title.
+        Verifies if the user is successfully logged out by checking for the presence
+        of the <auth-login> tag, which only appears on the login page.
         """
-        self.wait.until(lambda driver: driver.title == "OrangeHRM")
-        return self.driver.title == "OrangeHRM"
+        try:
+            # Wait until the auth-login tag is visible (indicative of login page)
+            self.wait.until(EC.presence_of_element_located((By.TAG_NAME, "auth-login")))
+            return True
+        except:
+            return False
