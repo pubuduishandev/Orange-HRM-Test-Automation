@@ -7,28 +7,30 @@ class LoginPage:
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 10)
 
-        # Locators for login page elements
-        self.username_input = (By.NAME, "username")
-        self.password_input = (By.NAME, "password")
-        self.login_button = (By.XPATH, "//button[@type='submit']")
-        self.dashboard_header = (By.XPATH, "//h6[text()='Dashboard']")
-
     def login(self, username, password):
-        """
-        Performs the login action using provided credentials.
-        """
-        # Step 1: Enter username
-        self.wait.until(EC.presence_of_element_located(self.username_input)).send_keys(username)
+        username_input = self.wait.until(EC.visibility_of_element_located((By.NAME, "username")))
+        password_input = self.driver.find_element(By.NAME, "password")
+        login_button = self.driver.find_element(By.XPATH, "//button[@type='submit']")
 
-        # Step 2: Enter password
-        self.wait.until(EC.presence_of_element_located(self.password_input)).send_keys(password)
-
-        # Step 3: Click the login button
-        self.wait.until(EC.element_to_be_clickable(self.login_button)).click()
+        username_input.clear()
+        username_input.send_keys(username)
+        password_input.clear()
+        password_input.send_keys(password)
+        login_button.click()
 
     def is_dashboard_displayed(self):
-        """
-        Verifies if the dashboard is displayed after login.
-        """
-        # Step 4: Wait for dashboard header to become visible as a login success indicator
-        return self.wait.until(EC.visibility_of_element_located(self.dashboard_header)).is_displayed()
+        try:
+            dashboard_header = self.wait.until(
+                EC.presence_of_element_located((By.XPATH, "//h6[text()='Dashboard']"))
+            )
+            return dashboard_header.is_displayed()
+        except:
+            return False
+
+    def get_login_error_message(self):
+        try:
+            error_locator = (By.XPATH, "//p[contains(text(), 'Invalid credentials')]")
+            error_element = self.wait.until(EC.visibility_of_element_located(error_locator))
+            return error_element.text
+        except:
+            return None

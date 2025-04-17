@@ -17,14 +17,19 @@ def test_login_success(driver, user):
     login_page = LoginPage(driver)
     login_page.login(user["username"], user["password"])
 
-    # Step 3: Verify if dashboard is displayed after login
+    # Step 3: Check if user is on the dashboard
     is_logged_in = login_page.is_dashboard_displayed()
 
-    # Step 4: Define expected result — Only allow success for the known valid credentials
-    expected = user["username"] == "Admin" and user["password"] == "admin123"
+    # Step 4: Get error message if login failed
+    error_msg = login_page.get_login_error_message()
 
-    # Step 5: Assert actual vs expected login result
-    assert is_logged_in == expected, (
-        f"Login test failed for user: {user['username']} | "
-        f"Expected login success: {expected}, Actual: {is_logged_in}"
-    )
+    # Step 5: Expected behavior
+    expected_success = user["username"] == "Admin" and user["password"] == "admin123"
+
+    # Step 6: Assert based on expected outcome
+    if expected_success:
+        assert is_logged_in, f"Login successful with'{user['username']} & {user['password']}'!"
+    else:
+        assert error_msg == "Invalid credentials", (
+            f"'{user['username']} & {user['password']}' are Invalid credentials!"
+        )
