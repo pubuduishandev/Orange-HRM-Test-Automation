@@ -2,6 +2,7 @@ import pytest
 from PageObjects.HomePage import HomePage
 from Utilities.data_loader import load_titles_from_json
 
+# Load test user data from JSON
 test_titles = load_titles_from_json()
 
 @pytest.mark.order(1)
