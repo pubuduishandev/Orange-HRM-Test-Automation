@@ -70,38 +70,39 @@ A modular and layered Page Object Model (POM) architecture will be used for test
   - Browser: Google Chrome (Latest) <br>
   - Python: Version (Latest) <br>
   - Required Libraries: <br>
-      - `selenium` <br>
-      - `pytest` <br>
-      - `webdriver-manager` <br>
-      - `pytest-html` <br>
-      - `openpyxl` <br>
-      - `allure-pytest` <br>
+      - `selenium` - for the main package of the python test automation <br>
+      - `pytest` - for implement test automation <br>
+      - `webdriver-manager` - for manage the web browser in the testing <br>
+      - `pytest-html` - for generate reports <br>
+      - `openpyxl` - for generate excel sheets <br>
+      - `allure-pytest` - for generate allure reports <br>
   - Other Libraries: <br>
-      - `pytest-order` <br>
-      - `reportlab` <br>
-      - `rich pytest-json` <br>
-      - `pytest-json-report`<br>
-      - `tabulate` <br>
-      - `console` <br>
+      - `pytest-order` - for identify testing order <br>
+      - `reportlab` - for generate report as pdf <br>
+      - `rich pytest-json` - for design the terminal <br>
+      - `pytest-json-report` - for generate report as JSON <br>
+      - `tabulate` - for show test data in the table <br>
+      - `console` - for design the console  <br>
+      - `pywin32` - for customize the cmd when running the test automation <br>
   - Internet connectivity for accessing OrangeHRM demo site <br>
 
 ---
 
 **Steps to run the project** <br>
-Step 1: 🔥 Delete the broken venv (From the project directory) <br>
+Step 1: Delete the broken venv (From the project directory) <br>
 `deactivate` <br>
 `rmdir /S /Q .venv` <br>
 
-Step 2: ⚙️ Recreate venv with Python (Run this from your project directory) <br>
+Step 2: Recreate venv with Python (Run this from your project directory) <br>
 `"{python.exe path}" -m venv .venv`
 
 example: <br>
 `"C:\Users\pubudui\AppData\Local\Programs\Python\Python313\python.exe" -m venv .venv`
 
-Step 3: ✅ Activate the venv <br>
+Step 3: Activate the venv <br>
 `.\.venv\Scripts\activate`
 
-Step 4: 📦 Install required packages <br>
+Step 4: Install required packages <br>
 `pip install --upgrade pip` _(optional)_ <br> 
 `pip install selenium` <br>
 `pip install pytest` <br>
@@ -116,8 +117,9 @@ Step 4: 📦 Install required packages <br>
 `pip install pytest-json-report` <br>
 `pip install tabulate` <br>
 `pip install console` <br>
+`pip install pywin32` <br>
 
-Step 5: 🧪 Run your tests! <br>
+Step 5: Run your tests! <br>
 Run this command in the terminal from your project directory `pytest testCases/ -v` <br>
 or <br>
 Double-click on the `Run.bat` file in the project
