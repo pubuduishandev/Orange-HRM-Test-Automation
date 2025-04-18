@@ -9,7 +9,7 @@ test_data = load_profile_menu_items_from_json()
 
 @pytest.mark.order(4)
 @pytest.mark.parametrize("menu_item", test_data)
-def test_profile_menu_click(driver, menu_item):
+def test_logout_functionality(driver, menu_item):
     # Step 2: Load the app and login
     home_page = HomePage(driver)
     home_page.load()
