@@ -2,35 +2,36 @@ import pytest
 from PageObjects.LoginPage import LoginPage
 from PageObjects.LogoutPage import LogoutPage
 from PageObjects.HomePage import HomePage
-from Utilities.data_loader import load_profile_menu_from_json
+from Utilities.data_loader import load_profile_menu_items_from_json
 
-# Load profile dropdown test data
-profile_items = load_profile_menu_from_json()
+# Step 1: Load dropdown items from JSON (to be clicked from profile dropdown)
+test_data = load_profile_menu_items_from_json()
 
 @pytest.mark.order(4)
-@pytest.mark.parametrize("menu_item", profile_items)
-def test_logout_functionality(driver, menu_item):
-    # Step 1: Launch app and log in
+@pytest.mark.parametrize("menu_item", test_data)
+def test_profile_menu_click(driver, menu_item):
+    # Step 2: Load the app and login
     home_page = HomePage(driver)
     home_page.load()
 
     login_page = LoginPage(driver)
     login_page.login("Admin", "admin123")
-    assert login_page.is_dashboard_displayed(), "Login failed — dashboard not visible"
 
-    # Step 2: Check if the current test menu item is 'Logout'
-    expected_dropdown_item = "Logout"
-    actual_item = menu_item["drop_down"]
+    # Step 3: Assert login was successful by checking dashboard visibility
+    assert login_page.is_dashboard_displayed(), "Login failed — Dashboard not visible"
 
-    if actual_item != expected_dropdown_item:
-        pytest.fail(f"Test failed — Expected dropdown item 'Logout' but got '{actual_item}'")
+    # Step 4: Extract the dropdown item from test data
+    dropdown_item = menu_item["drop_down"]
+
+    # Step 5: Click the dropdown item using LogoutPage's generic method
+    logout_page = LogoutPage(driver)
+    logout_page.click_dropdown_option(dropdown_item)
+
+    # Step 6: Check if clicking that item led to the login page (i.e., user got logged out)
+    if logout_page.is_logged_out():
+        print(f"[✅] Clicked '{dropdown_item}' → successfully logged out.")
     else:
-        # Step 3: Attempt logout
-        logout_page = LogoutPage(driver)
-        logout_page.logout()
-
-        # Step 4: Verify logout was successful
-        if logout_page.is_logged_out():
-            print("Logout test case pass")
-        else:
-            pytest.fail("Logout failed — login page not visible after logout")
+        pytest.fail(
+            f"[❌] Clicked '{dropdown_item}' but did NOT redirect to login page. "
+            "Expected logout behavior not observed."
+        )
