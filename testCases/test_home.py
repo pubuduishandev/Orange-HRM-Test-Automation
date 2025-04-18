@@ -1,39 +1,34 @@
 import pytest
 from PageObjects.HomePage import HomePage
-from Utilities.data_loader import load_titles_from_json
+from Utilities.data_loader import load_urls_from_json
 
-# Load test user data from JSON
-test_titles = load_titles_from_json()
+# Step 1: Load base URLs from test data JSON
+test_urls = load_urls_from_json()
 
 @pytest.mark.order(1)
-@pytest.mark.parametrize("test_data", test_titles)
-def test_home_page_title(driver, test_data):
-    # Step 1: Extract base_url and expected title from test data
-    base_url = test_data["base_url"]
-    expected_title = test_data["title"]
+@pytest.mark.parametrize("url_data", test_urls)
+def test_home_page_title(driver, url_data):
+    # Step 2: Extract base URL from the current dataset
+    base_url = url_data["base_url"]
 
-    # Step 2: Initialize the HomePage object and override its URL with the test case URL
+    # Step 3: Initialize the HomePage object (uses WebDriver instance)
     home_page = HomePage(driver)
-    home_page.url = base_url  # override the one from config
+
+    # Step 4: Override the homepage URL with test data (bypasses config)
+    home_page.url = base_url
+
+    # Step 5: Navigate to the base URL
     home_page.load()
 
-    # Step 3: Get the actual title of the currently loaded page
+    # Step 6: Retrieve the current page title
     actual_title = home_page.get_title()
 
-    # Step 4: Set the strict expected condition
-    # Only accept test data with a specific base_url AND title
-    expected = (
-        test_data["base_url"] == "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
-        and test_data["title"] == "OrangeHRM"
-    )
+    # Step 7: Define the expected title string for OrangeHRM
+    expected_title = "OrangeHRM"
 
-    # Step 5: Assert that:
-    #  - The test data matches the known correct combo (expected == True)
-    #  - The actual page title matches the expected title (case-insensitive, partial match allowed)
-    # If either fails, throw a detailed assertion error
-    assert (expected and expected_title in actual_title), (
-        f"Test failed for base_url: {base_url}\n"
-        f"Expected title: OrangeHRM\n"
-        f"Actual title: {actual_title}\n"
-        f"Is expected combo? {expected}"
+    # Step 8: Compare the actual title with expected title using exact match
+    assert actual_title.strip() == expected_title, (
+        f"\n[❌] Title mismatch for: {base_url}"
+        f"\nExpected: {expected_title}"
+        f"\nActual: {actual_title}"
     )
