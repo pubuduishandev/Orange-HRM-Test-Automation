@@ -66,18 +66,23 @@ A modular and layered Page Object Model (POM) architecture will be used for test
 
 **Environmental Needs** <br>
   - Operating System: Windows <br>
-  - PyCharm IDE (latest) (Professional Edition) <br>
-  - Browser: Google Chrome (latest) <br>
-  - Python: Version (latest) <br>
+  - PyCharm IDE (Latest) (Professional Edition) <br>
+  - Browser: Google Chrome (Latest) <br>
+  - Python: Version (Latest) <br>
   - Required Libraries: <br>
       - `selenium` <br>
       - `pytest` <br>
-      - `pytest-order` <br>
       - `webdriver-manager` <br>
       - `pytest-html` <br>
       - `openpyxl` <br>
       - `allure-pytest` <br>
+  - Other Libraries: <br>
+      - `pytest-order` <br>
       - `reportlab` <br>
+      - `rich pytest-json` <br>
+      - `pytest-json-report`<br>
+      - `tabulate` <br>
+      - `console` <br>
   - Internet connectivity for accessing OrangeHRM demo site <br>
 
 ---
@@ -107,6 +112,10 @@ Step 4: 📦 Install required packages <br>
 `pip install openpyxl` <br>
 `pip install allure-pytest` <br>
 `pip install reportlab` <br>
+`pip install rich pytest-json` <br>
+`pip install pytest-json-report` <br>
+`pip install tabulate` <br>
+`pip install console` <br>
 
 Step 5: 🧪 Run your tests! <br>
 Run this command in the terminal from your project directory `pytest testCases/ -v` <br>
