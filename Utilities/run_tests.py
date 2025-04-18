@@ -11,6 +11,8 @@ import data_loader
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
+from openpyxl.worksheet.protection import SheetProtection
+from copy import copy
 
 # Step 1 - CMD Customization
 # Disable the maximize button
@@ -178,7 +180,6 @@ console.print("".center(terminal_width) + "\n", style="bold")
 console.print("Developed By".center(terminal_width), style="bold white")
 console.print("© 2025 Pubudu Ishan Wickrama Arachchi | All Rights Reserved.".center(terminal_width), style="bold white")
 
-
 # Step 9: Export test data to Excel (after Step 5)
 excel_dir = os.path.join("Reports", "Excel")
 os.makedirs(excel_dir, exist_ok=True)
@@ -199,10 +200,12 @@ for col_num, header in enumerate(headers, 1):
     cell.font = header_font
     cell.fill = header_fill
     cell.alignment = alignment_center
-    ws.column_dimensions[get_column_letter(col_num)].width = 30
 
 # Reset test_data_index for export consistency
 test_data_index_export = {k: 0 for k in test_data_cache.keys()}
+
+# Track max width for each column
+col_widths = [len(h) for h in headers]
 
 for i, test in enumerate(tests, 1):
     full_nodeid = test.get("nodeid", "N/A")
@@ -216,7 +219,6 @@ for i, test in enumerate(tests, 1):
 
     outcome = test.get("outcome", "unknown").upper()
 
-    # Use cached data and index from console step
     test_data_list = test_data_cache.get(test_case, [])
     index = test_data_index_export.get(test_case, 0)
     test_data_count = len(test_data_list)
@@ -226,7 +228,7 @@ for i, test in enumerate(tests, 1):
 
     test_data_index_export[test_case] += 1
 
-    row = [
+    row_data = [
         str(i).zfill(2),
         full_nodeid,
         f"{test_data_index_export[test_case]} of {test_data_count}",
@@ -234,6 +236,36 @@ for i, test in enumerate(tests, 1):
         duration_str,
         outcome,
     ]
-    ws.append(row)
 
+    # Append the row and apply conditional formatting
+    for col_num, value in enumerate(row_data, 1):
+        cell = ws.cell(row=i + 1, column=col_num, value=value)
+
+        if headers[col_num - 1] == "Result":
+            if value == "PASSED":
+                cell.font = Font(color="006100")
+            elif value == "FAILED":
+                cell.font = Font(color="9C0006")
+
+        # Update column width tracking
+        value_str = str(value)
+        if len(value_str) > col_widths[col_num - 1]:
+            col_widths[col_num - 1] = len(value_str)
+
+# Auto-adjust column widths based on longest cell content
+for i, width in enumerate(col_widths, 1):
+    ws.column_dimensions[get_column_letter(i)].width = width + 2  # Add padding
+
+# Lock all cells and disable editing
+for row in ws.iter_rows():
+    for cell in row:
+        protection = copy(cell.protection)
+        protection.locked = True
+        cell.protection = protection
+
+ws.protection = SheetProtection(sheet=True, password="viewonly", formatCells=False, insertColumns=False,
+                                insertRows=False, deleteColumns=False, deleteRows=False,
+                                sort=False, autoFilter=False, pivotTables=False)
+
+# Save the final workbook
 wb.save(excel_file_path)
