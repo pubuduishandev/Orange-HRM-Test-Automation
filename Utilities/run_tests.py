@@ -27,7 +27,7 @@ start_time = datetime.datetime.now()
 
 # Change the CMD title
 if sys.platform == "win32":
-    os.system("title ORANGE HRM TEST AUTOMATION V1.0.0.1")
+    os.system("title ORANGE HRM TEST AUTOMATION - Version OS 5.7")
 
 # Step 2: Display start info
 # Get terminal width
