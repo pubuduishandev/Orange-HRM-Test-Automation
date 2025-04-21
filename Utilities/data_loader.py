@@ -8,7 +8,7 @@ def load_users_from_json(json_path="TestData/test_users.json"):
     with open(json_path, "r") as file:
         return json.load(file)
 
-def load_side_nav_menu_items_from_json(json_path="TestData/test_side_nav_menu_items.json"):
+def load_quick_launch_items_from_json(json_path="TestData/test_quick_launch_items.json"):
     with open(json_path, "r") as file:
         return json.load(file)
 

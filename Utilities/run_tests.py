@@ -69,7 +69,7 @@ def get_test_data_by_nodeid(nodeid: str):
     elif "test_login.py::test_login_success" in nodeid:
         return data_loader.load_users_from_json()
     elif "test_leave.py::test_navigate_to_leave" in nodeid:
-        return data_loader.load_side_nav_menu_items_from_json()
+        return data_loader.load_quick_launch_items_from_json()
     elif "test_logout.py::test_logout_functionality" in nodeid:
         return data_loader.load_profile_menu_items_from_json()
     else:
