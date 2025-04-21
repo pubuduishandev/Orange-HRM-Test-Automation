@@ -4,38 +4,38 @@ from PageObjects.HomePage import HomePage
 from PageObjects.LeavePage import LeavePage
 from Utilities.data_loader import load_quick_launch_items_from_json
 
-# Step 1: Load quick launch test data from JSON
+# Step 1: Load test data from the JSON file containing Quick Launch items
 test_data = load_quick_launch_items_from_json()
 
 @pytest.mark.order(3)
-@pytest.mark.parametrize("button", test_data)
-def test_navigate_to_leave(driver, button):
-    # Step 2: Initialize HomePage and launch the application
+@pytest.mark.parametrize("nav_item", test_data)
+def test_navigate_to_leave(driver, nav_item):
+    # Step 2: Initialize Page Objects for Home, Login, and Leave pages
     home_page = HomePage(driver)
-    home_page.load()
-
-    # Step 3: Perform login using valid credentials
     login_page = LoginPage(driver)
-    login_page.login("Admin", "admin123")
-
-    # Step 4: Assert that the dashboard appears, indicating a successful login
-    assert login_page.is_dashboard_displayed(), "Dashboard not displayed after login"
-
-    # Step 5: Initialize the LeavePage object
     leave_page = LeavePage(driver)
 
-    # Step 6: Extract the button title to be clicked from the test data
-    button_name = button["button_title"]
+    # Step 3: Launch the homepage using URL from config
+    home_page.load()
 
-    # Step 7: Click the correct quick launch button based on the title
-    leave_page.click_nav_item(button_name)
+    # Step 4: Log in with valid credentials (static for now)
+    login_page.login("Admin", "admin123")
 
-    # Step 8: Get the page header after navigation
+    # Step 5: Assert dashboard is displayed post-login
+    assert login_page.is_dashboard_displayed(), "Dashboard not displayed after login"
+
+    # Step 6: Extract the 'button_title' from the current test dataset
+    nav_name = nav_item["button_title"]
+
+    # Step 7: Click the Quick Launch button that matches the title
+    leave_page.click_quick_launch_button(nav_name)
+
+    # Step 8: Retrieve the header text of the navigated page
     actual_header = leave_page.get_page_header_text()
 
-    # Step 9: Assert that we have landed on the correct page (Leave)
+    # Step 9: Validate that the navigation resulted in the 'Leave' page
     assert actual_header == "Leave", (
-        f"\n[❌] Navigation failed for: '{button_name}'"
-        f"\nExpected to land on page with header: 'Leave'"
-        f"\nBut actually landed on: '{actual_header}'"
+        f"\n[❌] Navigation failed for button: '{nav_name}'"
+        f"\nExpected header: 'Leave'"
+        f"\nActual header: '{actual_header}'"
     )
