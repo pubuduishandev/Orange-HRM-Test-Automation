@@ -1,11 +1,5 @@
 [
-  {
-    "base_url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"
-  },
-  {
-    "base_url": "https://sis.cmb.ac.lk/tech/"
-  },
-  {
-    "base_url": "https://lms.tech.cmb.ac.lk/"
-  }
+  { "base_url": "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login" },
+  { "base_url": "https://sis.cmb.ac.lk/tech/" },
+  { "base_url": "https://lms.tech.cmb.ac.lk/" }
 ]
