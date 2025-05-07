@@ -37,7 +37,7 @@ def test_logout_functionality(driver, menu_item):
     # Step 8: Check if clicking that item led to the login page (i.e., user got logged out)
     try:
         assert logout_page.is_logged_out(), (
-            f"[❌] Clicked '{dropdown_item}' but did NOT redirect to login page. "
+            f"Clicked '{dropdown_item}' but not logged out."
             "Expected logout behavior not observed."
         )
         print(f"[✅] Clicked '{dropdown_item}' → successfully logged out.")
