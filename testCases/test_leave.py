@@ -41,15 +41,11 @@ def test_navigate_to_leave(driver, nav_item):
 
     # Step 10: Validate that the navigation resulted in the 'Leave' page
     try:
-        assert actual_header == "Leave", (
-            f"\n[❌] Navigation failed for button: '{nav_name}'"
-            f"\nExpected header: 'Leave'"
-            f"\nActual header: '{actual_header}'"
-        )
+        assert actual_header == "Leave", "Navigation to Leave page failed"
     except AssertionError as e:
         # Step 11: Capture screenshot on failure
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = os.path.join(screenshot_dir, f"test_{timestamp}_screenshot.png")
+        filename = os.path.join(screenshot_dir, f"test_failure_{timestamp}_screenshot.png")
         driver.save_screenshot(filename)
         print(f"\n[📸] Screenshot saved to: {filename}")
         raise e  # Re-raise to let pytest handle the failure
