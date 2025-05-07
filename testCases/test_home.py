@@ -9,13 +9,13 @@ screenshot_dir = os.path.join("Screenshots", "Test Home")
 os.makedirs(screenshot_dir, exist_ok=True)
 
 # Step 2: Load base URLs from test data JSON
-test_urls = load_urls_from_json()
+test_data = load_urls_from_json()
 
 @pytest.mark.order(1)
-@pytest.mark.parametrize("url_data", test_urls)
-def test_home_page_title(driver, url_data):
+@pytest.mark.parametrize("url", test_data)
+def test_home_page_title(driver, url):
     # Step 3: Extract base URL from the current dataset
-    base_url = url_data["base_url"]
+    base_url = url["base_url"]
 
     # Step 4: Initialize the HomePage object (uses WebDriver instance)
     home_page = HomePage(driver)
@@ -34,15 +34,11 @@ def test_home_page_title(driver, url_data):
 
     # Step 9: Compare the actual title with expected title using exact match
     try:
-        assert actual_title.strip() == expected_title, (
-            f"\n[❌] Title mismatch for: {base_url}"
-            f"\nExpected: {expected_title}"
-            f"\nActual: {actual_title}"
-        )
+        assert actual_title.strip() == expected_title, "Invalid home page title"
     except AssertionError as e:
         # Step 10: Capture screenshot on failure
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = os.path.join(screenshot_dir, f"test_{timestamp}_screenshot.png")
+        filename = os.path.join(screenshot_dir, f"home_title_failure_{timestamp}_screenshot.png")
         driver.save_screenshot(filename)
         print(f"\n[📸] Screenshot saved to: {filename}")
         raise e  # Re-raise to let pytest handle the failure
